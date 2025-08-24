@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Jigsaw Captcha</title>
+    <!--
+      - Tailwind CSS is used for styling. It's loaded via a CDN for simplicity.
+      - The entire design is responsive and uses a modern, dark theme.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Main container for centering content -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Live Jigsaw Captcha</h1>
+            <p class="text-gray-400">Solve the puzzle from your live video to prove you're human.</p>
+        </div>
+
+        <!-- Captcha Game Area -->
+        <div id="captcha-container" class="w-full max-w-lg mx-auto bg-gray-800 rounded-xl shadow-2xl p-6">
+
+            <!-- Webcam video element (initially hidden) -->
+            <video id="webcam" autoplay playsinline class="w-full rounded-lg mb-4 hidden"></video>
+
+            <!-- Canvas for capturing the frame (hidden from view) -->
+            <canvas id="canvas" class="hidden"></canvas>
+
+            <!-- Main game area with puzzle pieces and solution grid -->
+            <div id="game-area" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                <!-- Scrambled puzzle pieces will be appended here -->
+                <div class="p-2 bg-gray-900 rounded-lg">
+                    <h3 class="text-center font-semibold mb-3 text-gray-300">Scrambled Pieces</h3>
+                    <div id="puzzle-pieces" class="grid grid-cols-3 gap-1">
+                        <!-- JS will generate and place pieces here -->
+                    </div>
+                </div>
+
+                <!-- Solution grid where user drops the pieces -->
+                <div class="p-2 bg-gray-900 rounded-lg">
+                    <h3 class="text-center font-semibold mb-3 text-gray-300">Your Solution</h3>
+                    <div id="solution-grid" class="grid grid-cols-3 gap-1">
+                        <!-- JS will generate 9 drop zones here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div id="button-container" class="mt-6 flex justify-center space-x-4">
+                <button id="start-btn" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-transform transform hover:scale-105">
+                    Start Captcha
+                </button>
+                <button id="reset-btn" class="hidden px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 transition-transform transform hover:scale-105">
+                    Reset
+                </button>
+            </div>
+
+            <!-- Message Area for feedback -->
+            <div id="message" class="mt-6 text-center font-semibold text-lg h-8"></div>
+        </div>
+    </div>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
