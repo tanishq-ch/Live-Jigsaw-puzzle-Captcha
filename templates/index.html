@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,5 +69,29 @@
         </div>
     </div>
 	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Put Your Webcam Back In Order</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1646424915/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>Put Your Webcam Back In Order</header>
+    <div id="puzzle-container">
+        <canvas id="puzzle-canvas"></canvas>
+        <canvas id="output-canvas" style="display: none;"></canvas> <!-- Hidden for processing -->
+    </div>
+    <p id="instructions">Unscramble your webcam by dragging pieces back to their original positions!</p>
+    <button id="continue-btn" disabled>Continue</button>
+    <div id="success-overlay" class="hidden">✓ Thank you human!</div>
 </body>
 </html>
